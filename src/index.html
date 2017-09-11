@@ -10,18 +10,34 @@
 
 <body>
     <h1>Welcome to CryptoHisto</h1>
-    <p>Decrypt using the <a href="https://en.wikipedia.org/wiki/Frequency_analysis">frequency analysis attack</a>!</p>
+
+    <ul class="desc1">
+        <li>1. Decrypt using the <a href="https://en.wikipedia.org/wiki/Frequency_analysis">frequency analysis attack</a>! Select the target language:</li>
+        <li>
+            <select id="langCombo">
+                <option value="en">English</option>
+                <option value="dk">Danish</option>
+            </select>
+        </li>
+    </ul>
 
     <div class="pane">
-        <div contenteditable="true">
+        <div id="textInput" class="textInput" contenteditable="true">
             
         </div>
         <div>
-            <svg width="300" height="200"></svg>
+            <svg id="histoText" width="350" height="250"></svg>
         </div>
         <div>
-            
+            <svg id="histoLang" width="350" height="250"></svg>
         </div>
     </div>
+
+    <ul class="desc2">
+        <li>2. Try the key and decrypt the cypher text by using this key:</li>
+        <li>
+            <div class="keyInput" contenteditable="true">ABCDEFGHILMNOPQRSTUVWXZ</div>
+        </li>
+    </ul>
 </body>
 </html>
