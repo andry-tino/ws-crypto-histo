@@ -27,8 +27,7 @@ body {
     height: 250px;
 }
 
-.pane > div:nth-child(1) {
-    flex: 1 1 auto;
+#textInput {
     background-color: #efefef;
     outline: none;
     padding: .75em;
@@ -38,6 +37,23 @@ body {
     border-radius: .65em;
     line-height: 1.4em;
     font-size: 1em;
+    flex: 1 1 auto;
+}
+
+.progress {
+    flex: 0 0 auto;
+    height: 6px;
+    background-color: #aaaaaa;
+    width: 6px;
+    margin-top: 5px;
+    border-radius: 3px;
+    transition: width 3s linear; /* Keep in sync with timeout in js */
+}
+
+.pane > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
 }
 .pane > div:nth-child(2),
 .pane > div:nth-child(3) {

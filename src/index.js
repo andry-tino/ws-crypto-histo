@@ -6,7 +6,8 @@ window.addEventListener("load", function () {
     attachNativeEvents();
 
     // English is loaded at the beginning
-    loadDataInChart("histoLang", data_lang_en, "Language");
+    loadDataInChart("histoText", data_lang_nil, "Text frequencies");
+    loadDataInChart("histoLang", data_lang_en, "English language");
 });
 
 function attachNativeEvents() {
@@ -33,7 +34,7 @@ function attachNativeEvents() {
 
             // Logging
             console.log("input on textInput", e);
-        }, 3500);
+        }, 3000);
     });
 }
 
