@@ -2,29 +2,47 @@
  * index.js
  */
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     attachNativeEvents();
 
-    loadDataInChart("#histoLang", [{"letter":"A","frequency":0.08167},{"letter":"B","frequency":0.01492},{"letter":"C","frequency":0.02782},{"letter":"D","frequency":0.04253},{"letter":"E","frequency":0.12702},{"letter":"F","frequency":0.02288},{"letter":"G","frequency":0.02015},{"letter":"H","frequency":0.06094},{"letter":"I","frequency":0.06266},{"letter":"J","frequency":0.00153},{"letter":"K","frequency":0.00772},{"letter":"L","frequency":0.04025},{"letter":"M","frequency":0.02406},{"letter":"N","frequency":0.06749},{"letter":"O","frequency":0.07507},{"letter":"P","frequency":0.01929},{"letter":"Q","frequency":0.00095},{"letter":"R","frequency":0.05987},{"letter":"S","frequency":0.06327},{"letter":"T","frequency":0.09056},{"letter":"U","frequency":0.01258},{"letter":"V","frequency":0.00978},{"letter":"W","frequency":0.0236},{"letter":"X","frequency":0.0015},{"letter":"Y","frequency":0.01974},{"letter":"Z","frequency":0.00074}], "Language");
+    // English is loaded at the beginning
+    loadDataInChart("histoLang", data_lang_en, "Language");
 });
 
 function attachNativeEvents() {
     var langCombo = document.getElementById("langCombo");
-    langCombo.addEventListener("change", function(e) {
+    langCombo.addEventListener("change", function (e) {
+        var value = e.target.value;
+        if (value) {
+            if (value === "dk") loadDataInChart("histoLang", data_lang_dk, "Danish language");
+            else loadDataInChart("histoLang", data_lang_en, "English language");
+        }
+
+        // Logging
         console.log("change on langComgo", e);
     });
 
     var textInput = document.getElementById("textInput");
-    textInput.addEventListener("input", function(e) {
-        console.log("input on textInput", e);
+    var t = -1;
+    textInput.addEventListener("input", function (e) {
+        if (t > 0) return;
 
-        loadDataInChart("#histoText", [{"letter":"A","frequency":0.08167},{"letter":"B","frequency":0.01492},{"letter":"C","frequency":0.02782},{"letter":"D","frequency":0.04253},{"letter":"E","frequency":0.12702},{"letter":"F","frequency":0.02288},{"letter":"G","frequency":0.02015},{"letter":"H","frequency":0.06094},{"letter":"I","frequency":0.06966},{"letter":"J","frequency":0.00153},{"letter":"K","frequency":0.00772},{"letter":"L","frequency":0.04025},{"letter":"M","frequency":0.02406},{"letter":"N","frequency":0.06749},{"letter":"O","frequency":0.07507},{"letter":"P","frequency":0.01929},{"letter":"Q","frequency":0.00095},{"letter":"R","frequency":0.05987},{"letter":"S","frequency":0.06327},{"letter":"T","frequency":0.09056},{"letter":"U","frequency":0.02758},{"letter":"V","frequency":0.00978},{"letter":"W","frequency":0.0236},{"letter":"X","frequency":0.0015},{"letter":"Y","frequency":0.01974},{"letter":"Z","frequency":0.00074}], "Text frequencies");
+        t = window.setTimeout(function () {
+            loadDataInChart("histoText", calculateTextStats(null), "Text frequencies");
+            t = -1;
+
+            // Logging
+            console.log("input on textInput", e);
+        }, 3500);
     });
 }
 
 function loadDataInChart(svgId, data, title) {
-    var svg = d3.select(svgId),
-        margin = {top: 20, right: 20, bottom: 30, left: 40},
+    var svgElement = document.getElementById(svgId);
+    if (svgElement) cleanElement(svgElement);
+
+    var svg = d3.select(`#${svgId}`),
+        margin = { top: 20, right: 20, bottom: 30, left: 40 },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom;
 
@@ -34,8 +52,8 @@ function loadDataInChart(svgId, data, title) {
     var g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    x.domain(data.map(function(d) { return d.letter; }));
-    y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+    x.domain(data.map(function (d) { return d.letter; }));
+    y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
 
     g.append("g")
         .attr("class", "axis axis--x")
@@ -56,21 +74,55 @@ function loadDataInChart(svgId, data, title) {
         .data(data)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return x(d.letter); })
+        .attr("x", function (d) { return x(d.letter); })
         .attr("y", height)
         .attr("width", x.bandwidth())
         .attr("height", 0)
-        .attr("fill", function(d) { return "rgb(0, 0, " + (d.frequency*1000) + ")"; })
+        .attr("fill", function (d) { return "rgb(0, 0, " + (d.frequency * 1000) + ")"; })
         .transition()
         .duration(750)
-        .attr("y", function(d) { return y(d.frequency); })
-        .attr("height", function(d) { return height - y(d.frequency); });
-    
+        .attr("y", function (d) { return y(d.frequency); })
+        .attr("height", function (d) { return height - y(d.frequency); });
+
     // Title
     svg.append("text")
-        .attr("x", (svg.attr("width") / 2))             
+        .attr("x", (svg.attr("width") / 2))
         .attr("y", 12)
-        .attr("text-anchor", "middle")  
-        .style("font-size", ".7em") 
+        .attr("text-anchor", "middle")
+        .style("font-size", ".7em")
         .text(title);
+}
+
+function updateDataInChart(svgId, data) {
+    var svg = d3.select(`#${svgId}`),
+        margin = { top: 20, right: 20, bottom: 30, left: 40 },
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom;
+    var g = d3.select(`${svgId} .axis--y`);
+
+    var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+        y = d3.scaleLinear().rangeRound([height, 0]);
+
+    x.domain(data.map(function (d) { return d.letter; }));
+    y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
+
+    g.selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function (d) { return x(d.letter); })
+        .attr("y", height)
+        .attr("width", x.bandwidth())
+        .attr("height", 0)
+        .attr("fill", function (d) { return "rgb(0, 0, " + (d.frequency * 1000) + ")"; })
+        .transition()
+        .duration(750)
+        .attr("y", function (d) { return y(d.frequency); })
+        .attr("height", function (d) { return height - y(d.frequency); });
+}
+
+function cleanElement(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
 }
