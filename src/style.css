@@ -36,6 +36,8 @@ body {
     font-family: monospace;
     min-width: 200px;
     border-radius: .65em;
+    line-height: 1.4em;
+    font-size: 1em;
 }
 .pane > div:nth-child(2),
 .pane > div:nth-child(3) {

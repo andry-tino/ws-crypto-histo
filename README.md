@@ -1,6 +1,8 @@
 # CryptoHisto (ws-crypto-histo)
 A workshop for elementary students to learn and play with cryptography.
 
+![CryptoHisto](screenshot.png)
+
 ## Target
 This workshop is designed to target kids in 9th grade with zero background in programming. The purpose of this project is to learn about:
 
