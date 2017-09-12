@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <h1>Welcome to CryptoHisto</h1>
+    <h1 class="title">Welcome to CryptoHisto</h1>
 
     <ul class="desc1">
-        <li>1. Decrypt using the <a href="https://en.wikipedia.org/wiki/Frequency_analysis">frequency analysis attack</a>! Select the target language:</li>
+        <li>1. Decrypt using the <a rel="bookmark" href="https://en.wikipedia.org/wiki/Frequency_analysis" target="_blank">frequency analysis attack</a>! Select the target language:</li>
         <li>
             <select id="langCombo">
                 <option value="en">English</option>
@@ -23,7 +23,7 @@
     </ul>
 
     <div class="pane">
-        <div id="textInput" class="textInput" contenteditable="true">
+        <div id="textInput" contenteditable="true">
             
         </div>
         <div>
@@ -39,6 +39,13 @@
         <li>
             <div class="keyInput" contenteditable="true">ABCDEFGHILMNOPQRSTUVWXZ</div>
         </li>
+        <li>
+            <input id="buttonDecrypt" type="button" value="Decrypt">
+        </li>
     </ul>
+
+    <div id="textOutput">
+        
+    </div>
 </body>
 </html>

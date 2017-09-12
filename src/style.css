@@ -1,6 +1,23 @@
 body {
     margin: 1em;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    height: 100%;
+}
+body {
+    height: 90%;
+}
+
+.title, .desc1, .pane, .desc2 {
+    flex: 0 0 auto;
+}
+
+.title {
+    margin: 0 0 .75em 0;
 }
 
 .pane {
@@ -39,7 +56,7 @@ ul.desc2 {
     margin: 1.5em 0 0 0;
 }
 
-ul > li:nth-child(2) {
+ul > li:nth-child(n+2) {
     padding: 0 0 0 .35em;
 }
 
@@ -54,4 +71,14 @@ ul > li:nth-child(2) {
     outline: none;
     letter-spacing: .25em;
     border-radius: 1em;
+}
+
+#textOutput {
+    background-color: #efefef;
+    padding: .75em;
+    overflow: auto;
+    font-family: monospace;
+    border-radius: .65em;
+    margin-top: 1.5em;
+    flex: 1 1 auto;
 }
