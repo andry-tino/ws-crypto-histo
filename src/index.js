@@ -26,6 +26,7 @@ function attachNativeEvents() {
 
     // Text input react
     var textInput = document.getElementById("textInput");
+    var refreshPeriod = 3000; // In milliseconds
     var t = -1;
     textInput.addEventListener("input", function (e) {
         var progress = document.getElementsByClassName("progress")[0];
@@ -34,7 +35,7 @@ function attachNativeEvents() {
             window.setTimeout(function(){
                 progress.style.width = "0px";
                 window.setTimeout(function(){
-                    progress.style.transition = "width 3s linear";
+                    progress.style.transition = `width ${refreshPeriod}ms linear`;
                     window.setTimeout(function(){
                         progress.style.width = "100%";
                     },0);
@@ -45,12 +46,13 @@ function attachNativeEvents() {
         if (t > 0) window.clearTimeout(t);
 
         t = window.setTimeout(function () {
-            loadDataInChart("histoText", calculateTextStats(null), "Text frequencies");
+            var text = document.getElementById("textInput").textContent;
+            loadDataInChart("histoText", calculateTextStats(text), "Text frequencies");
             t = -1;
 
             // Logging
             console.log("input on textInput", e);
-        }, 3000);
+        }, refreshPeriod);
     });
 }
 
