@@ -54,6 +54,20 @@ function attachNativeEvents() {
             console.log("input on textInput", e);
         }, refreshPeriod);
     });
+
+    textInput.addEventListener("paste", function (e) {
+        var pastedText = "";
+        if (window.clipboardData && window.clipboardData.getData) { // IE
+            pastedText = window.clipboardData.getData('Text');
+        } else if (e.clipboardData && e.clipboardData.getData) {
+            pastedText = e.clipboardData.getData('text/plain');
+        }
+
+        e.preventDefault();
+        document.getElementById("textInput").innerText = stripFormatting(pastedText);
+
+        console.log("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
+    });
 }
 
 function loadDataInChart(svgId, data, title) {
@@ -130,4 +144,10 @@ function letter2color(letter) {
         "p": 15, "q": 16, "r": 17, "s": 18, "t": 19,
         "u": 20, "v": 21, "w": 22, "x": 23, "y": 24, "z": 25
     }[letter.toLowerCase()];
+}
+
+function stripFormatting(html) {
+    var tempDiv = document.createElement("DIV");
+    tempDiv.innerHTML = html;
+    return tempDiv.innerText;
 }
