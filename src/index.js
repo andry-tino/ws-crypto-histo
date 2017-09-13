@@ -72,6 +72,10 @@ function loadDataInChart(svgId, data, title) {
     x.domain(data.map(function (d) { return d.letter; }));
     y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
 
+    var paletteBright = d3.schemePaired;
+    var paletteDark = d3.schemeDark2;
+    var palette = paletteDark;
+
     g.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
@@ -95,7 +99,7 @@ function loadDataInChart(svgId, data, title) {
         .attr("y", height)
         .attr("width", x.bandwidth())
         .attr("height", 0)
-        .attr("fill", function (d) { return "rgb(0, 0, " + (d.frequency * 1000) + ")"; })
+        .attr("fill", function (d) { return palette[letter2color(d.letter) % palette.length]; })
         .transition()
         .duration(750)
         .attr("y", function (d) { return y(d.frequency); })
@@ -110,36 +114,18 @@ function loadDataInChart(svgId, data, title) {
         .text(title);
 }
 
-function updateDataInChart(svgId, data) {
-    var svg = d3.select(`#${svgId}`),
-        margin = { top: 20, right: 20, bottom: 30, left: 40 },
-        width = +svg.attr("width") - margin.left - margin.right,
-        height = +svg.attr("height") - margin.top - margin.bottom;
-    var g = d3.select(`${svgId} .axis--y`);
-
-    var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-        y = d3.scaleLinear().rangeRound([height, 0]);
-
-    x.domain(data.map(function (d) { return d.letter; }));
-    y.domain([0, d3.max(data, function (d) { return d.frequency; })]);
-
-    g.selectAll(".bar")
-        .data(data)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function (d) { return x(d.letter); })
-        .attr("y", height)
-        .attr("width", x.bandwidth())
-        .attr("height", 0)
-        .attr("fill", function (d) { return "rgb(0, 0, " + (d.frequency * 1000) + ")"; })
-        .transition()
-        .duration(750)
-        .attr("y", function (d) { return y(d.frequency); })
-        .attr("height", function (d) { return height - y(d.frequency); });
-}
-
 function cleanElement(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
+}
+
+function letter2color(letter) {
+    return {
+        "a": 0, "b": 1, "c": 2, "d": 3, "e": 4,
+        "f": 5, "g": 6, "h": 7, "i": 8, "j": 9,
+        "k": 10, "l": 11, "m": 12, "n": 13, "o": 14,
+        "p": 15, "q": 16, "r": 17, "s": 18, "t": 19,
+        "u": 20, "v": 21, "w": 22, "x": 23, "y": 24, "z": 25
+    }[letter.toLowerCase()];
 }
