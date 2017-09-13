@@ -89,6 +89,24 @@ ul > li:nth-child(n+2) {
     letter-spacing: .25em;
     border-radius: 1em;
 }
+.key {
+    height: 1.8em;
+    line-height: 1.8em;
+    font-size: 1.1em;
+    min-width: 200px;
+    padding: 0 .65em 0 .65em;
+    font-family: monospace;
+    outline: none;
+    letter-spacing: .25em;
+    position: absolute;
+    opacity: 0;
+    color: #999999;
+    transition: opacity .25s ease-in;
+    margin-top: -5px;
+}
+.keyInput:focus ~ .key {
+    opacity: 1;
+}
 
 #textOutput {
     background-color: #efefef;
