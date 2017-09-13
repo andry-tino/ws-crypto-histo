@@ -47,7 +47,6 @@ body {
     width: 6px;
     margin-top: 5px;
     border-radius: 3px;
-    transition: width 3s linear; /* Keep in sync with timeout in js */
 }
 
 .pane > div:nth-child(1) {

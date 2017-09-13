@@ -11,6 +11,7 @@ window.addEventListener("load", function () {
 });
 
 function attachNativeEvents() {
+    // Language combobox
     var langCombo = document.getElementById("langCombo");
     langCombo.addEventListener("change", function (e) {
         var value = e.target.value;
@@ -23,10 +24,25 @@ function attachNativeEvents() {
         console.log("change on langComgo", e);
     });
 
+    // Text input react
     var textInput = document.getElementById("textInput");
     var t = -1;
     textInput.addEventListener("input", function (e) {
-        if (t > 0) return;
+        var progress = document.getElementsByClassName("progress")[0];
+        window.setTimeout(function(){
+            progress.style.transition = "width 0s linear";
+            window.setTimeout(function(){
+                progress.style.width = "0px";
+                window.setTimeout(function(){
+                    progress.style.transition = "width 3s linear";
+                    window.setTimeout(function(){
+                        progress.style.width = "100%";
+                    },0);
+                },0);
+            },0);
+        },0);
+
+        if (t > 0) window.clearTimeout(t);
 
         t = window.setTimeout(function () {
             loadDataInChart("histoText", calculateTextStats(null), "Text frequencies");
