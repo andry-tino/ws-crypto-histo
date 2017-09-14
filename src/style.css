@@ -13,8 +13,38 @@ html, body {
     flex: 0 0 auto;
 }
 
+.panel {
+    display: flex;
+    flex-direction: row;
+    margin-top: .75em;
+}
+
 .desc1, .desc2 {
-    margin-top: .5em;
+    flex-direction: column;
+    flex: 0 0 auto;
+    width: 20%;
+    font-size: 10pt;
+    margin-bottom: 0;
+    margin-right: .5em;
+    align-items: flex-start;
+    min-width: 100px;
+}
+
+.desc2 {
+    width: 30%;
+    flex: 0 0 auto;
+    min-width: 325px;
+}
+
+.desc1 > li,
+.desc2 > li {
+    margin-bottom: .35em;
+}
+
+.langs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 body > *:not(.title):not(.divider) {
@@ -32,8 +62,8 @@ body > *:not(.title):not(.divider) {
 .pane {
     display: flex;
     flex-direction: row;
-    width: 100%;
     height: 250px;
+    flex: 1 1 auto;
 }
 
 #textInput {
@@ -46,6 +76,10 @@ body > *:not(.title):not(.divider) {
     border-radius: .65em;
     line-height: 1.4em;
     font-size: 1em;
+    flex: 1 1 auto;
+}
+
+.textPanel {
     flex: 1 1 auto;
 }
 
