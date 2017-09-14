@@ -1,23 +1,32 @@
 body {
-    margin: 1em;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
 }
 
-html {
+html, body {
     height: 100%;
-}
-body {
-    height: 90%;
 }
 
 .title, .desc1, .pane, .desc2 {
     flex: 0 0 auto;
 }
 
+.desc1, .desc2 {
+    margin-top: .5em;
+}
+
+body > *:not(.title):not(.divider) {
+    margin-left: .75em;
+    margin-right: .75em;
+}
+
 .title {
-    margin: 0 0 .75em 0;
+    background-color: #000000;
+    color: #ffffff;
+    padding: .25em .5em;
+    font-size: 12pt;
 }
 
 .pane {
@@ -69,10 +78,6 @@ ul {
     padding: 0;
 }
 
-ul.desc2 {
-    margin: 1.5em 0 0 0;
-}
-
 ul > li:nth-child(n+2) {
     padding: 0 0 0 .35em;
 }
@@ -82,7 +87,8 @@ ul > li:nth-child(n+2) {
     line-height: 1.8em;
     font-size: 1.1em;
     min-width: 200px;
-    background-color: #efefef;
+    background-color: transparent;
+    border: 1px solid #aaaaaa;
     padding: 0 .65em 0 .65em;
     font-family: monospace;
     outline: none;
@@ -109,11 +115,18 @@ ul > li:nth-child(n+2) {
 }
 
 #textOutput {
-    background-color: #efefef;
+    background-color: #e6e6e6;
     padding: .75em;
     overflow: auto;
     font-family: monospace;
     border-radius: .65em;
-    margin-top: 1.5em;
     flex: 1 1 auto;
+    margin-bottom: .75em;
+}
+
+.divider {
+    flex: 0 0 auto;
+    margin: .25em 0 .25em 0;
+    height: 1px;
+    background-color: #cccccc;
 }
