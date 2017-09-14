@@ -8,6 +8,8 @@ window.addEventListener("load", function () {
     // English is loaded at the beginning
     loadDataInChart("histoText", data_lang_nil, "Text frequencies");
     loadDataInChart("histoLang", data_lang_en, "English language");
+
+    showFlag("lang_en");
 });
 
 function attachNativeEvents() {
@@ -16,9 +18,11 @@ function attachNativeEvents() {
     langCombo.addEventListener("change", function (e) {
         var value = e.target.value;
         if (value) {
-            if (value === "dk") loadDataInChart("histoLang", data_lang_dk, "Danish language");
+            if (value === "lang_dk") loadDataInChart("histoLang", data_lang_dk, "Danish language");
             else loadDataInChart("histoLang", data_lang_en, "English language");
         }
+
+        showFlag(value); // Combo values supposed to match ids of flags
 
         // Logging
         console.log("change on langComgo", e);
@@ -150,4 +154,12 @@ function stripFormatting(html) {
     var tempDiv = document.createElement("DIV");
     tempDiv.innerHTML = html;
     return tempDiv.innerText;
+}
+
+function showFlag(code) {
+    var flags = document.getElementsByClassName("lang-flag");
+    
+    for (let i = 0; i < flags.length; i++) {
+        flags[i].style.display = flags[i].id == code ? "block" : "none";
+    }
 }
