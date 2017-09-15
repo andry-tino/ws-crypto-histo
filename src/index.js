@@ -9,6 +9,10 @@ window.addEventListener("load", function () {
     loadDataInChart("histoText", data_lang_nil, "Text frequencies");
     loadDataInChart("histoLang", data_lang_en, "English language");
 
+    // Initialize width for key input
+    var keyInput = document.getElementsByClassName("keyInput")[0];
+    //keyInput.style.width = `${Math.ceil(keyInput.clientWidth)}px`;
+
     showFlag("lang_en");
 });
 
@@ -71,6 +75,27 @@ function attachNativeEvents() {
         document.getElementById("textInput").innerText = stripFormatting(pastedText);
 
         console.log("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
+    });
+
+    // Decrypt button
+    var decryptButton = document.getElementById("buttonDecrypt");
+    decryptButton.addEventListener("click", function (e) {
+        if (getKeyLength() != 26) {
+            showTextInOutputBox(`Error, key must be 26 characters! You provided a key with ${getKeyLength()} characters.`);
+            return;
+        }
+
+        showTextInOutputBox("Hello World!");
+    });
+
+    // Key box
+    var keyInput = document.getElementsByClassName("keyInput")[0];
+    keyInput.addEventListener("paste", function (e) {
+        e.preventDefault(); // We don't let them paste in here
+    });
+
+    keyInput.addEventListener("input", function (e) {
+        keyInput.textContent = keyInput.textContent.replace(/\n|\r|\s/g, "").toUpperCase().substr(0, 26);
     });
 }
 
@@ -162,4 +187,14 @@ function showFlag(code) {
     for (let i = 0; i < flags.length; i++) {
         flags[i].style.display = flags[i].id == code ? "block" : "none";
     }
+}
+
+function showTextInOutputBox(text) {
+    var box = document.getElementById("textOutput");
+    
+    box.textContent = text;
+}
+
+function getKeyLength(text) {
+    return document.getElementsByClassName("keyInput")[0].textContent.length;
 }

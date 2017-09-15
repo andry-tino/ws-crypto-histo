@@ -40,7 +40,7 @@
         <div class="side-panel">
             <ul class="desc1">
                 <li><span class="emph">Analyze the text</span> This tool helps you decrypt a message which was 
-                    encrypted by means of a <a rel="bookmark" href="https://en.wikipedia.org/wiki/Transposition_cipher" target="_blank">transposition cypher</a>.
+                    encrypted by means of a <a rel="bookmark" href="https://en.wikipedia.org/wiki/Substitution_cipher" target="_blank">substitution cypher</a>.
                     The technique for breaking the cypher is the 
                     <a rel="bookmark" href="https://en.wikipedia.org/wiki/Frequency_analysis" target="_blank">frequency analysis attack</a> 
                     which you will be performing here.</li>
@@ -64,9 +64,9 @@
                 <li><span class="emph">Decrypt the message</span>In order to decrypt the message you need to use a key. 
                     You will calculate the key as a result of the analysis performed by using the histograms, 
                     after you founf the letter associations, use them to build the key.</li>
-                <li>
-                    <div class="keyInput" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">ABCDEFGHILMNOPQRSTUVWXZ</div>
-                    <div class="key">ABCDEFGHILMNOPQRSTUVWXZ</div>
+                <li class="key-container">
+                    <div class="keyInput" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+                    <div class="key">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
                 </li>
                 <li>
                     <input id="buttonDecrypt" type="button" value="Decrypt">

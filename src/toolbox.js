@@ -20,3 +20,10 @@ function getNumberOfOccurrencesForLetter(text, letter) {
 function buildHistoFreqInfo(letter, frequency) {
     return { "letter": letter, "frequency": frequency };
 }
+
+function findAllOccurrances(substring, string) {
+    var a = []; var i = -1;
+    while((i = string.indexOf(substring, i+1)) >= 0) a.push(i);
+
+    return a;
+}

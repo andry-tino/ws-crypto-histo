@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     font-family: serif;
     min-width: 1000px;
-    min-height: 600px;
+    min-height: 700px;
 }
 
 html, body {
@@ -33,6 +33,14 @@ html, body {
 
 .desc2 {
     margin-top: 1em;
+}
+
+.desc2 > li:last-child {
+    margin-top: 1.5em;
+}
+
+.key-container {
+    margin-top: .5em;
 }
 
 .desc1 > li,
@@ -107,7 +115,7 @@ body > *:not(.title):not(.divider) {
     display: flex;
     flex-direction: column;
     width: 30%;
-    min-width: 300px;
+    min-width: 350px;
     flex: 0 0 auto;
 }
 
