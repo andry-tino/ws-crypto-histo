@@ -14,26 +14,9 @@
 </head>
 
 <body>
-    <div class="title">Welcome to CryptoHisto</div>
+    <div class="title">CryptoHisto</div>
 
     <div class="panel">
-        <ul class="desc1">
-            <li>Decrypt any cyphed message using the <a rel="bookmark" href="https://en.wikipedia.org/wiki/Frequency_analysis" target="_blank">frequency analysis attack</a>.</li>
-            <li>Type the message in the box next to here, after that you must use a valid key.</li>
-            <li>Select the target language:</li>
-            <li>
-                <ul class="langs">
-                    <li>
-                        <select id="langCombo">
-                            <option value="lang_en" selected>English</option>
-                            <option value="lang_dk">Danish</option>
-                        </select>
-                    </li>
-                    <li id="lang_en" class="lang-flag" style="height: 16px"><img src="assets/uk.svg" alt="English language" height="16"></li>
-                    <li id="lang_dk" class="lang-flag" style="height: 16px"><img src="assets/dk.svg" alt="Danish language" height="16"></li>
-                </ul>
-            </li>
-        </ul>
         <div class="pane">
             <div>
                 <div id="textInput" contenteditable="true"></div>
@@ -51,18 +34,37 @@
     <div class="divider"></div>
 
     <div class="panel textPanel">
-        <ul class="desc2">
-            <li>In order to decrypt the message you need to use a key. 
-                Use the histogram to match frequency peaks and crack the cypher. 
-                After you have typed the key (full key), click the button to see the decrypted message.</li>
-            <li>
-                <div class="keyInput" contenteditable="true">ABCDEFGHILMNOPQRSTUVWXZ</div>
-                <div class="key">ABCDEFGHILMNOPQRSTUVWXZ</div>
-            </li>
-            <li>
-                <input id="buttonDecrypt" type="button" value="Decrypt">
-            </li>
-        </ul>
+        <div class="side-panel">
+            <ul class="desc1">
+                <li>Decrypt any cyphed message using the <a rel="bookmark" href="https://en.wikipedia.org/wiki/Frequency_analysis" target="_blank">frequency analysis attack</a>.</li>
+                <li>Type the message in the box next to here, after that you must use a valid key.</li>
+                <li>Select the target language:</li>
+                <li>
+                    <ul class="langs">
+                        <li>
+                            <select id="langCombo">
+                                <option value="lang_en" selected>English</option>
+                                <option value="lang_dk">Danish</option>
+                            </select>
+                        </li>
+                        <li id="lang_en" class="lang-flag" style="height: 16px"><img src="assets/uk.svg" alt="English language" height="16"></li>
+                        <li id="lang_dk" class="lang-flag" style="height: 16px"><img src="assets/dk.svg" alt="Danish language" height="16"></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="desc2">
+                <li>In order to decrypt the message you need to use a key. 
+                    Use the histogram to match frequency peaks and crack the cypher. 
+                    After you have typed the key (full key), click the button to see the decrypted message.</li>
+                <li>
+                    <div class="keyInput" contenteditable="true">ABCDEFGHILMNOPQRSTUVWXZ</div>
+                    <div class="key">ABCDEFGHILMNOPQRSTUVWXZ</div>
+                </li>
+                <li>
+                    <input id="buttonDecrypt" type="button" value="Decrypt">
+                </li>
+            </ul>
+        </div>
         <div id="textOutput"></div>
     </div>
 </body>
