@@ -85,7 +85,9 @@ function attachNativeEvents() {
             return;
         }
 
-        showTextInOutputBox("Hello World!");
+        var inputBox = document.getElementById("textInput");
+        var keyInput = document.getElementsByClassName("keyInput")[0];
+        showTextInOutputBox(decryptCypherText(inputBox.textContent, keyInput.textContent));
     });
 
     // Key box

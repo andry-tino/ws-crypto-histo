@@ -22,9 +22,13 @@ function decryptCypherText(cypherText, key) {
         for (var j = 0; j < assocArray.length; j++) {
             if (cypherText[i] == assocArray[j].toLowerCase()) {
                 plainText += key[j].toLowerCase();
-            } else if (cypherText[i] == assocArray[j].toUpperCase()) {
+                break;
+            }
+            if (cypherText[i] == assocArray[j].toUpperCase()) {
                 plainText += key[j].toUpperCase();
-            } else {
+                break;
+            } 
+            if (j == assocArray.length - 1) {
                 plainText += cypherText[i];
             }
         }
