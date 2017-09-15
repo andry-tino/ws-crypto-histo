@@ -115,7 +115,7 @@ body > *:not(.title):not(.divider) {
     display: flex;
     flex-direction: column;
     width: 30%;
-    min-width: 350px;
+    min-width: 400px;
     flex: 0 0 auto;
 }
 
@@ -147,7 +147,8 @@ ul > li:nth-child(n+2) {
     height: 1.8em;
     line-height: 1.8em;
     font-size: 1.1em;
-    min-width: 200px;
+    width: 350px;
+    text-align: center;
     background-color: transparent;
     border: 1px solid #aaaaaa;
     padding: 0 .65em 0 .65em;
@@ -160,7 +161,8 @@ ul > li:nth-child(n+2) {
     height: 1.8em;
     line-height: 1.8em;
     font-size: 1.1em;
-    min-width: 200px;
+    width: 350px;
+    text-align: center;
     padding: 0 .65em 0 .65em;
     font-family: monospace;
     outline: none;

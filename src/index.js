@@ -103,6 +103,11 @@ function loadDataInChart(svgId, data, title) {
     var svgElement = document.getElementById(svgId);
     if (svgElement) cleanElement(svgElement);
 
+    if (!data) {
+        loadDataInChart("histoText", data_lang_nil, "Text frequencies");
+        return;
+    }
+
     var svg = d3.select(`#${svgId}`),
         margin = { top: 20, right: 20, bottom: 30, left: 40 },
         width = +svg.attr("width") - margin.left - margin.right,
