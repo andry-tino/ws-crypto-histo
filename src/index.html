@@ -14,12 +14,15 @@
 </head>
 
 <body>
-    <div class="title">CryptoHisto</div>
+    <div class="title">
+        <div>CryptoHisto</div>
+        <div>v1.0</div>
+    </div>
 
     <div class="panel">
         <div class="pane">
             <div>
-                <div id="textInput" contenteditable="true"></div>
+                <div id="textInput" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
                 <div class="progress"></div>
             </div>
             <div>
@@ -36,9 +39,13 @@
     <div class="panel textPanel">
         <div class="side-panel">
             <ul class="desc1">
-                <li>Decrypt any cyphed message using the <a rel="bookmark" href="https://en.wikipedia.org/wiki/Frequency_analysis" target="_blank">frequency analysis attack</a>.</li>
-                <li>Type the message in the box next to here, after that you must use a valid key.</li>
-                <li>Select the target language:</li>
+                <li><span class="emph">Analyze the text</span> This tool helps you decrypt a message which was 
+                    encrypted by means of a <a rel="bookmark" href="https://en.wikipedia.org/wiki/Transposition_cipher" target="_blank">transposition cypher</a>.
+                    The technique for breaking the cypher is the 
+                    <a rel="bookmark" href="https://en.wikipedia.org/wiki/Frequency_analysis" target="_blank">frequency analysis attack</a> 
+                    which you will be performing here.</li>
+                <li>The first step is typing the cypher-text in the box above.</li>
+                <li>Then you must select which language you think the original text was written into.</li>
                 <li>
                     <ul class="langs">
                         <li>
@@ -51,13 +58,14 @@
                         <li id="lang_dk" class="lang-flag" style="height: 16px"><img src="assets/dk.svg" alt="Danish language" height="16"></li>
                     </ul>
                 </li>
+                <li>Analyze the histograms and confront the peaks in order to find the original letter association.</li>
             </ul>
             <ul class="desc2">
-                <li>In order to decrypt the message you need to use a key. 
-                    Use the histogram to match frequency peaks and crack the cypher. 
-                    After you have typed the key (full key), click the button to see the decrypted message.</li>
+                <li><span class="emph">Decrypt the message</span>In order to decrypt the message you need to use a key. 
+                    You will calculate the key as a result of the analysis performed by using the histograms, 
+                    after you founf the letter associations, use them to build the key.</li>
                 <li>
-                    <div class="keyInput" contenteditable="true">ABCDEFGHILMNOPQRSTUVWXZ</div>
+                    <div class="keyInput" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">ABCDEFGHILMNOPQRSTUVWXZ</div>
                     <div class="key">ABCDEFGHILMNOPQRSTUVWXZ</div>
                 </li>
                 <li>
