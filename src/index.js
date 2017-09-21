@@ -87,7 +87,13 @@ function attachNativeEvents() {
 
         var inputBox = document.getElementById("textInput");
         var keyInput = document.getElementsByClassName("keyInput")[0];
-        showTextInOutputBox(decryptCypherText(inputBox.textContent, keyInput.textContent));
+        showTextInOutputBox(
+            checkKeyAndDecrypt(keyInput.textContent, 
+                function () { 
+                    return decryptCypherText(inputBox.textContent, keyInput.textContent); 
+                }
+            )
+        );
     });
 
     // Key box

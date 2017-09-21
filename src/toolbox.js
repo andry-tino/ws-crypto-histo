@@ -27,3 +27,16 @@ function findAllOccurrances(substring, string) {
 
     return a;
 }
+
+function checkKeyAndDecrypt(key, callbackSuccess) {
+    if (!key) {
+        return "Error: Invalid key";
+    }
+
+    // Check duplicate characters
+    if ((/([a-z])\1/i).test(key)) {
+        return "Error: Duplicate characters in key!";
+    }
+
+    return callbackSuccess();
+}
