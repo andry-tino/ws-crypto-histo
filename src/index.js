@@ -35,7 +35,8 @@ function attachNativeEvents() {
     var textInput = document.getElementById("textInput");
     var refreshPeriod = 3000; // In milliseconds
     var t = -1;
-    textInput.addEventListener("input", function (e) {
+
+    var updateOnInput = function(e) {
         var textBox = document.getElementById("textInput");
         textBox.style.backgroundColor = "#cccccc";
 
@@ -49,18 +50,17 @@ function attachNativeEvents() {
             // Logging
             console.log("input on textInput", e);
         }, refreshPeriod);
+    }
+
+    textInput.addEventListener("input", function (e) {
+        updateOnInput(e);
     });
 
     textInput.addEventListener("paste", function (e) {
-        var pastedText = "";
-        if (window.clipboardData && window.clipboardData.getData) { // IE
-            pastedText = window.clipboardData.getData('Text');
-        } else if (e.clipboardData && e.clipboardData.getData) {
-            pastedText = e.clipboardData.getData('text/plain');
-        }
-
-        e.preventDefault();
-        document.getElementById("textInput").innerText = stripFormatting(pastedText);
+        var pastedText = textInput.innerText;
+        textInput.innerText = stripFormatting(pastedText);
+        
+        updateOnInput(e);
 
         console.log("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
     });
