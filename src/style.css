@@ -96,19 +96,11 @@ body > *:not(.title):not(.divider) {
     line-height: 1.4em;
     font-size: 1em;
     flex: 1 1 auto;
+    transition: background-color .25s ease-in;
 }
 
 .textPanel {
     flex: 1 1 auto;
-}
-
-.progress {
-    flex: 0 0 auto;
-    height: 6px;
-    background-color: #aaaaaa;
-    width: 6px;
-    margin-top: 5px;
-    border-radius: 3px;
 }
 
 .side-panel {
@@ -189,7 +181,7 @@ ul > li:nth-child(n+2) {
 
 .divider {
     flex: 0 0 auto;
-    margin: .25em 0 .25em 0;
+    margin: .75em 0 .25em 0;
     height: 1px;
     background-color: #cccccc;
 }

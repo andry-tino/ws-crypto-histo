@@ -11,7 +11,6 @@ window.addEventListener("load", function () {
 
     // Initialize width for key input
     var keyInput = document.getElementsByClassName("keyInput")[0];
-    //keyInput.style.width = `${Math.ceil(keyInput.clientWidth)}px`;
 
     showFlag("lang_en");
 });
@@ -37,25 +36,14 @@ function attachNativeEvents() {
     var refreshPeriod = 3000; // In milliseconds
     var t = -1;
     textInput.addEventListener("input", function (e) {
-        var progress = document.getElementsByClassName("progress")[0];
-        window.setTimeout(function(){
-            progress.style.transition = "width 0s linear";
-            window.setTimeout(function(){
-                progress.style.width = "0px";
-                window.setTimeout(function(){
-                    progress.style.transition = `width ${refreshPeriod}ms linear`;
-                    window.setTimeout(function(){
-                        progress.style.width = "100%";
-                    },0);
-                },0);
-            },0);
-        },0);
+        var textBox = document.getElementById("textInput");
+        textBox.style.backgroundColor = "#cccccc";
 
         if (t > 0) window.clearTimeout(t);
 
         t = window.setTimeout(function () {
-            var text = document.getElementById("textInput").textContent;
-            loadDataInChart("histoText", calculateTextStats(text), "Text frequencies");
+            loadDataInChart("histoText", calculateTextStats(textBox.textContent), "Text frequencies");
+            textBox.style.backgroundColor = ""; // Take from stylesheet
             t = -1;
 
             // Logging
