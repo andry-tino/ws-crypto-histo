@@ -111,6 +111,11 @@ body > *:not(.title):not(.divider) {
     flex: 0 0 auto;
 }
 
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .pane > div:nth-child(1) {
     display: flex;
     flex-direction: column;

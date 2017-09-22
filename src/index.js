@@ -59,7 +59,7 @@ function attachNativeEvents() {
     textInput.addEventListener("paste", function (e) {
         var pastedText = textInput.innerText;
         textInput.innerText = stripFormatting(pastedText);
-        
+
         updateOnInput(e);
 
         console.log("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
@@ -82,6 +82,13 @@ function attachNativeEvents() {
                 }
             )
         );
+    });
+
+    // Reset button
+    var resetButton = document.getElementById("buttonReset");
+    resetButton.addEventListener("click", function (e) {
+        var keyInput = document.getElementsByClassName("keyInput")[0];
+        keyInput.textContent = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     });
 
     // Key box
