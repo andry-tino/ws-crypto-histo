@@ -1,14 +1,9 @@
-# CryptoHisto (ws-crypto-histo)
+# CryptoHisto (ws-crypto-histo) - Stories
 A workshop for elementary students to learn and play with cryptography.
 
-![CryptoHisto](screenshot.png)
+This branch contains the stories it is possible to use as part of the workshop to play with cryptography.
 
-## Target
-This workshop is designed to target kids in 9th grade with zero background in programming. The purpose of this project is to learn about:
+## How to
+Every story is made of messages exchanged by characters. Studets are challenged to decrypt them and find the original text.
 
-- Basics on symmetric cryptography
-- Basics on Cryptoanalysis
-- The Frequency Cryptoanalysis
-
-## Program
-The workshop is designed to guide the audience through basic topics concerning security. The main focus is to have an hands-on session and trying to break a text-cypher using [Frequency Analysis](https://en.wikipedia.org/wiki/Frequency_analysis).
+**Important** Messages are designed to be simple to decrypt with respect to the English language and the histogram used in the tool.
