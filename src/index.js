@@ -92,9 +92,11 @@ function attachNativeEvents() {
     });
 
     // Key box
+    var allowPasteKey = true;
+
     var keyInput = document.getElementsByClassName("keyInput")[0];
     keyInput.addEventListener("paste", function (e) {
-        e.preventDefault(); // We don't let them paste in here
+        if (!allowPasteKey) e.preventDefault();
     });
 
     keyInput.addEventListener("input", function (e) {
