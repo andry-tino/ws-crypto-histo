@@ -41,3 +41,14 @@ function checkKeyAndDecrypt(key, callbackSuccess) {
 
     return callbackSuccess();
 }
+
+function stripFormatting(html) {
+    var tempDiv = document.createElement("DIV");
+    tempDiv.innerHTML = html;
+    return tempDiv.innerText;
+}
+
+function logInfo() {
+    // Log only if env variable is defined
+    if (window["__cryptohisto_log_enabled"]) console.log(arguments);
+}

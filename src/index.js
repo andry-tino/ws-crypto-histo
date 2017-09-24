@@ -28,7 +28,7 @@ function attachNativeEvents() {
         showFlag(value); // Combo values supposed to match ids of flags
 
         // Logging
-        console.log("change on langComgo", e);
+        logInfo("change on langComgo", e);
     });
 
     // Text input react
@@ -48,7 +48,7 @@ function attachNativeEvents() {
             t = -1;
 
             // Logging
-            console.log("input on textInput", e);
+            logInfo("input on textInput", e);
         }, refreshPeriod);
     }
 
@@ -57,12 +57,13 @@ function attachNativeEvents() {
     });
 
     textInput.addEventListener("paste", function (e) {
-        var pastedText = textInput.innerText;
-        textInput.innerText = stripFormatting(pastedText);
+        //var pastedText = textInput.innerText;
+        //textInput.innerText = stripFormatting(pastedText);
 
-        updateOnInput(e);
+        //updateOnInput(e);
+        //e.clipboardData.setData("text/plain", "Hello");
 
-        console.log("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
+        logInfo("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
     });
 
     // Decrypt button
@@ -183,12 +184,6 @@ function letter2color(letter) {
         "p": 15, "q": 16, "r": 17, "s": 18, "t": 19,
         "u": 20, "v": 21, "w": 22, "x": 23, "y": 24, "z": 25
     }[letter.toLowerCase()];
-}
-
-function stripFormatting(html) {
-    var tempDiv = document.createElement("DIV");
-    tempDiv.innerHTML = html;
-    return tempDiv.innerText;
 }
 
 function showFlag(code) {
