@@ -66,7 +66,7 @@ function attachNativeEvents() {
         logInfo("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
     });
 
-    // Decrypt button
+    // Encrypt/Decrypt button
     var decryptButton = document.getElementById("buttonDecrypt");
     decryptButton.addEventListener("click", function (e) {
         if (getKeyLength() != 26) {
@@ -76,6 +76,10 @@ function attachNativeEvents() {
 
         var inputBox = document.getElementById("textInput");
         var keyInput = document.getElementsByClassName("keyInput")[0];
+
+        // Clean key just to be sure
+        keyInput.textContent = cleanKey(keyInput);
+
         showTextInOutputBox(
             checkKeyAndDecrypt(keyInput.textContent, 
                 function () { 
@@ -100,8 +104,8 @@ function attachNativeEvents() {
         if (!allowPasteKey) e.preventDefault();
     });
 
-    keyInput.addEventListener("input", function (e) {
-        keyInput.textContent = keyInput.textContent.replace(/\n|\r|\s/g, "").toUpperCase().substr(0, 26);
+    keyInput.addEventListener("blur", function (e) {
+        keyInput.textContent = cleanKey(keyInput);
     });
 }
 

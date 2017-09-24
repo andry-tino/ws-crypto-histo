@@ -153,6 +153,10 @@ ul > li:nth-child(n+2) {
     outline: none;
     letter-spacing: .25em;
     border-radius: 1em;
+    overflow-x: hidden;
+}
+.keyInput:focus ~ .key {
+    opacity: 1;
 }
 .key {
     height: 1.8em;
@@ -169,9 +173,6 @@ ul > li:nth-child(n+2) {
     color: #999999;
     transition: opacity .25s ease-in;
     margin-top: -5px;
-}
-.keyInput:focus ~ .key {
-    opacity: 1;
 }
 
 #textOutput {
