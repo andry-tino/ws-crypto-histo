@@ -1,4 +1,4 @@
-# Message 1
+# Message 2
 This message is sent by Katniss to Peeta.
 
 ## Body
