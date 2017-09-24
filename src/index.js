@@ -99,6 +99,13 @@ function attachNativeEvents() {
         keyInput.textContent = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     });
 
+    // Random button
+    var rndButton = document.getElementById("buttonRnd");
+    rndButton.addEventListener("click", function (e) {
+        var keyInput = document.getElementsByClassName("keyInput")[0];
+        keyInput.textContent = durstenfeldShuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")).join("");
+    });
+
     // Key box
     var allowPasteKey = true;
 

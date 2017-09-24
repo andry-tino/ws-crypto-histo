@@ -64,3 +64,17 @@ function cleanKey(key) {
     // Removes spaces and newlines + to uppercase, + trim to 26 chars
     return key.textContent.replace(/\n|\r|\s/g, "").toUpperCase().substr(0, 26);
 }
+
+/**
+ * Randomize array element order in-place.
+ * Using Durstenfeld shuffle algorithm.
+ */
+function durstenfeldShuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
