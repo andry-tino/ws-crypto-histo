@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: serif;
+    min-width: 1000px;
+    min-height: 700px;
+}
+
+html, body {
+    height: 100%;
+}
+
+.title, .desc1, .pane, .desc2 {
+    flex: 0 0 auto;
+}
+
+.panel {
+    display: flex;
+    flex-direction: row;
+    margin-top: .75em;
+}
+
+.desc1, .desc2 {
+    flex-direction: column;
+    flex: 0 0 auto;
+    font-size: 10pt;
+    margin-bottom: 0;
+    margin-right: .5em;
+    align-items: flex-start;
+}
+
+.desc2 {
+    margin-top: 1em;
+}
+
+.desc2 > li:last-child {
+    margin-top: 1.5em;
+}
+
+.key-container {
+    margin-top: .5em;
+}
+
+.desc1 > li,
+.desc2 > li {
+    margin-bottom: .35em;
+}
+
+.langs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+body > *:not(.title):not(.divider) {
+    margin-left: .75em;
+    margin-right: .75em;
+}
+
+.title {
+    background-color: #000000;
+    color: #ffffff;
+    padding: .35em .5em;
+    font-size: 10pt;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: row;
+}
+
+.title > div:first-child {
+    flex: 1 1 auto;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.title > div:last-child {
+    flex: 0 0 auto;
+}
+
+.pane {
+    display: flex;
+    flex-direction: row;
+    height: 250px;
+    flex: 1 1 auto;
+}
+
+#textInput {
+    background-color: #efefef;
+    outline: none;
+    padding: .75em;
+    overflow: auto;
+    font-family: monospace;
+    min-width: 200px;
+    border-radius: .65em;
+    line-height: 1.4em;
+    font-size: 1em;
+    flex: 1 1 auto;
+    transition: background-color .25s ease-in;
+}
+
+.textPanel {
+    flex: 1 1 auto;
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 400px;
+    flex: 0 0 auto;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.pane > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+.pane > div:nth-child(2),
+.pane > div:nth-child(3) {
+    flex: 0 0 auto;
+    width: 350px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 0 .75em 0;
+    padding: 0;
+}
+
+ul > li:nth-child(n+2) {
+    padding: 0 0 0 .35em;
+}
+
+.keyInput {
+    height: 1.8em;
+    line-height: 1.8em;
+    font-size: 1.1em;
+    width: 350px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #aaaaaa;
+    padding: 0 .65em 0 .65em;
+    font-family: monospace;
+    outline: none;
+    letter-spacing: .25em;
+    border-radius: 1em;
+    overflow-x: hidden;
+}
+.keyInput:focus ~ .key {
+    opacity: 1;
+}
+.key {
+    height: 1.8em;
+    line-height: 1.8em;
+    font-size: 1.1em;
+    width: 350px;
+    text-align: center;
+    padding: 0 .65em 0 .65em;
+    font-family: monospace;
+    outline: none;
+    letter-spacing: .25em;
+    position: absolute;
+    opacity: 0;
+    color: #999999;
+    transition: opacity .25s ease-in;
+    margin-top: -5px;
+}
+
+#textOutput {
+    background-color: #efefef;
+    padding: .75em;
+    overflow: auto;
+    font-family: monospace;
+    border-radius: .65em;
+    flex: 1 1 auto;
+    margin-bottom: .75em;
+}
+
+.divider {
+    flex: 0 0 auto;
+    margin: .75em 0 .25em 0;
+    height: 1px;
+    background-color: #cccccc;
+}
+
+.emph {
+    font-weight: bold;
+}
+
+#buttonDecrypt {
+    margin-right: 1em;
+}
