@@ -57,13 +57,16 @@ function attachNativeEvents() {
     });
 
     textInput.addEventListener("paste", function (e) {
-        //var pastedText = textInput.innerText;
-        //textInput.innerText = stripFormatting(pastedText);
+        // This is necessary to wait for the text to be 
+        // rendered in the element and to be available here
+        window.setTimeout(function() {
+            var pastedText = textInput.innerText;
+            textInput.innerText = stripFormatting(pastedText);
 
-        //updateOnInput(e);
-        //e.clipboardData.setData("text/plain", "Hello");
+            updateOnInput(e);
 
-        logInfo("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
+            logInfo("paste in textInput", e, "data:", e.clipboardData.getData("text/plain"));
+        }, 0);
     });
 
     // Encrypt/Decrypt button
@@ -102,6 +105,17 @@ function attachNativeEvents() {
     var keyInput = document.getElementsByClassName("keyInput")[0];
     keyInput.addEventListener("paste", function (e) {
         if (!allowPasteKey) e.preventDefault();
+
+        // If allowed to paste, then strip possible formatting
+
+        // This is necessary to wait for the text to be 
+        // rendered in the element and to be available here
+        window.setTimeout(function() {
+            var pastedText = keyInput.innerText;
+            keyInput.innerText = stripFormatting(pastedText);
+
+            logInfo("paste in keyInput", e, "data:", e.clipboardData.getData("text/plain"));
+        }, 0);
     });
 
     keyInput.addEventListener("blur", function (e) {
