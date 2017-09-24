@@ -39,6 +39,13 @@ function checkKeyAndDecrypt(key, callbackSuccess) {
         return "Error: Duplicate characters in key!";
     }
 
+    // Check invalid characters
+    // No need to check for spaces and newlines, they are stripped away
+    matches = key.toLowerCase().match(/[^a-z]/g);
+    if (matches && matches.length > 0) {
+        return "Error: Key contains invalid characters! They key can only contain letters.";
+    }
+
     return callbackSuccess();
 }
 
