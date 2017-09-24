@@ -195,3 +195,7 @@ ul > li:nth-child(n+2) {
 .emph {
     font-weight: bold;
 }
+
+#buttonDecrypt {
+    margin-right: 1em;
+}

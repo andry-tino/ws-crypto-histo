@@ -78,3 +78,17 @@ function durstenfeldShuffle(array) {
     }
     return array;
 }
+
+function generateDual(key) {
+    var tpl = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    if (!key || key.length != tpl.length)
+        return key;
+
+    var dual = "";
+    for (let i = 0; i < tpl.length; i++) {
+        dual += tpl[key.toUpperCase().indexOf(tpl[i])];
+    }
+
+    return dual;
+}

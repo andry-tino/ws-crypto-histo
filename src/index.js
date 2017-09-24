@@ -106,6 +106,17 @@ function attachNativeEvents() {
         keyInput.textContent = durstenfeldShuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")).join("");
     });
 
+    // Dual button
+    var dualButton = document.getElementById("buttonDual");
+    dualButton.addEventListener("click", function (e) {
+        var keyInput = document.getElementsByClassName("keyInput")[0];
+
+        var initial = keyInput.textContent;
+        if (initial && initial.length > 0) {
+            keyInput.textContent = generateDual(initial);
+        }
+    });
+
     // Key box
     var allowPasteKey = true;
 
