@@ -34,7 +34,8 @@ function checkKeyAndDecrypt(key, callbackSuccess) {
     }
 
     // Check duplicate characters
-    if ((/([a-z])\1/i).test(key)) {
+    var matches = key.toLowerCase().split("").sort().join("").match(/(.)\1+/g);
+    if (matches && matches.length > 0) {
         return "Error: Duplicate characters in key!";
     }
 
