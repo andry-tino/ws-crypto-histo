@@ -11,8 +11,8 @@ But I have good news! These weeks I have been working to track all traps and I a
 ## Encryption
 Encrypt using this key:
 
-    dec => 
+    dec => TODO
            --------------------------
     tpl => ABCDEFGHIJKLMNOPQRSTUVWXYZ
            --------------------------
-    enc => ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    enc => IYQFPJUOATRDWLNKCGSHVBMXZE
