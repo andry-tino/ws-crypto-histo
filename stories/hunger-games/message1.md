@@ -1,6 +1,9 @@
 # Message 1
 This message is sent by Peeta to Katniss.
 
+- Language: English
+- Histogram requirements: Normal
+
 ## Body
 Hi Katniss this is Peeta! I have successfully managed to infiltrate Capitol City! I have found a place where to hide myself in the train from District 12: you were right, peacekeepers did not check the last wagon, they were too lazy. I am sorry I could not send you a message before but it was difficult to find a safe way to communicate, Caesar controls all broadcast communication channels here in Capitol, so I needed to find a way not to be caught.
 

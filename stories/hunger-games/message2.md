@@ -1,6 +1,9 @@
 # Message 2
 This message is sent by Katniss to Peeta.
 
+- Language: English
+- Histogram requirements: Normal
+
 ## Body
 Peeta we need more information from Capitol about District 2! I am writing from District 8 where a great part of our army is assembled and we are ready to attack. However we have just acquired recent information about Capitol's defense system and weapons which make us very worried. It seems that we have underestimated our enemy and they have much more fire power than we thought. I always thought that President Snow had a secret arsenal somewhere, and I am afraid now this is real.
 
