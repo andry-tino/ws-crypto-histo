@@ -140,24 +140,120 @@ ul > li:nth-child(n+2) {
     padding: 0 0 0 .35em;
 }
 
-.keyInput {
+.key-container {
     height: 1.8em;
     line-height: 1.8em;
     font-size: 1.1em;
-    width: 350px;
     text-align: center;
     background-color: transparent;
     border: 1px solid #aaaaaa;
     padding: 0 .65em 0 .65em;
     font-family: monospace;
-    outline: none;
     letter-spacing: .25em;
     border-radius: 1em;
-    overflow-x: hidden;
+    width: 354px;
+    position: relative;
 }
-.keyInput:focus ~ .key {
-    opacity: 1;
+
+.key-container > .keyElement {
+    height: 1.7em;
+    line-height: 1.7em;
+    font-size: 1.1em;
+    text-align: center;
+    background-color: transparent;
+    text-align: center;
+    font-family: monospace;
+    letter-spacing: .25em;
+    width: 13px;
+    position: absolute;
+    float: left;
+    background-color: transparent;
+    cursor: pointer;
+    transition: left .5s ease-in;
 }
+.keyElement.highlighted {
+    color: #f07;
+    font-weight: bold;
+}
+.keyElement[data-pos="1"] {
+    left: 13px;
+}
+.keyElement[data-pos="2"] {
+    left: 26px;
+}
+.keyElement[data-pos="3"] {
+    left: 39px;
+}
+.keyElement[data-pos="4"] {
+    left: 52px;
+}
+.keyElement[data-pos="5"] {
+    left: 65px;
+}
+.keyElement[data-pos="6"] {
+    left: 78px;
+}
+.keyElement[data-pos="7"] {
+    left: 91px;
+}
+.keyElement[data-pos="8"] {
+    left: 104px;
+}
+.keyElement[data-pos="9"] {
+    left: 117px;
+}
+.keyElement[data-pos="10"] {
+    left: 130px;
+}
+.keyElement[data-pos="11"] {
+    left: 143px;
+}
+.keyElement[data-pos="12"] {
+    left: 156px;
+}
+.keyElement[data-pos="13"] {
+    left: 169px;
+}
+.keyElement[data-pos="14"] {
+    left: 182px;
+}
+.keyElement[data-pos="15"] {
+    left: 195px;
+}
+.keyElement[data-pos="16"] {
+    left: 208px;
+}
+.keyElement[data-pos="17"] {
+    left: 221px;
+}
+.keyElement[data-pos="18"] {
+    left: 234px;
+}
+.keyElement[data-pos="19"] {
+    left: 247px;
+}
+.keyElement[data-pos="20"] {
+    left: 260px;
+}
+.keyElement[data-pos="21"] {
+    left: 273px;
+}
+.keyElement[data-pos="22"] {
+    left: 286px;
+}
+.keyElement[data-pos="23"] {
+    left: 299px;
+}
+.keyElement[data-pos="24"] {
+    left: 312px;
+}
+.keyElement[data-pos="25"] {
+    left: 325px;
+}
+.keyElement[data-pos="26"] {
+    left: 338px;
+}
+
 .key {
     height: 1.8em;
     line-height: 1.8em;

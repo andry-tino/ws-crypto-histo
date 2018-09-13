@@ -69,6 +69,37 @@ function attachNativeEvents() {
         }, 0);
     });
 
+    // Key container (swapping animation)
+    var keyContainer = document.getElementsByClassName("key-container")[0];
+    var firstToSwap = null;
+    keyContainer.addEventListener("click", function(e) {
+        var target = e.target;
+        
+        if (!firstToSwap) {
+            // First selection made
+            firstToSwap = target;
+            firstToSwap.classList.add("highlighted");
+            return;
+        }
+
+        // Second selection made: swap!
+        var secondPos = target.attributes.getNamedItem("data-pos").value;
+
+        if (target !== firstToSwap) {
+            var attr1 = document.createAttribute("data-pos");
+            attr1.value = secondPos;
+            var attr2 = document.createAttribute("data-pos");
+            attr2.value = firstToSwap.attributes.getNamedItem("data-pos").value;
+    
+            firstToSwap.attributes.setNamedItem(attr1);
+            target.attributes.setNamedItem(attr2);
+        }
+
+        // Clear state
+        firstToSwap.classList.remove("highlighted");
+        firstToSwap = null;
+    });
+
     // Encrypt/Decrypt button
     var decryptButton = document.getElementById("buttonDecrypt");
     decryptButton.addEventListener("click", function (e) {
@@ -116,29 +147,25 @@ function attachNativeEvents() {
             keyInput.textContent = generateDual(initial);
         }
     });
+}
 
-    // Key box
-    var allowPasteKey = true;
+function getKeyLen() {
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".length;
+}
 
-    var keyInput = document.getElementsByClassName("keyInput")[0];
-    keyInput.addEventListener("paste", function (e) {
-        if (!allowPasteKey) e.preventDefault();
+function extractKey() {
+    var keyContainer = document.getElementsByClassName("key-container")[0];
+    var keys = keyContainer.children;
 
-        // If allowed to paste, then strip possible formatting
+    var str = new Array(getKeyLen());
+    for (var key of keys) {
+        var value = key.attributes.getNamedItem("data-value").value;
+        var pos = parseInt(key.attributes.getNamedItem("data-pos").value);
 
-        // This is necessary to wait for the text to be 
-        // rendered in the element and to be available here
-        window.setTimeout(function() {
-            var pastedText = keyInput.innerText;
-            keyInput.innerText = stripFormatting(pastedText);
+        str[pos] = value;
+    }
 
-            logInfo("paste in keyInput", e, "data:", e.clipboardData.getData("text/plain"));
-        }, 0);
-    });
-
-    keyInput.addEventListener("blur", function (e) {
-        keyInput.textContent = cleanKey(keyInput);
-    });
+    return str.join("");
 }
 
 function loadDataInChart(svgId, data, title) {
