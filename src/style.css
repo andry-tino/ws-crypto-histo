@@ -140,22 +140,33 @@ ul > li:nth-child(n+2) {
     padding: 0 0 0 .35em;
 }
 
-.key-container {
+.key-container,
+.key-container-normal,
+.key-container-assoc {
     height: 1.8em;
-    line-height: 1.8em;
-    font-size: 1.1em;
     text-align: center;
-    background-color: transparent;
-    border: 1px solid #aaaaaa;
     padding: 0 .65em 0 .65em;
-    font-family: monospace;
-    letter-spacing: .25em;
-    border-radius: 1em;
     width: 354px;
     position: relative;
 }
+.key-container,
+.key-container-normal {
+    line-height: 1.8em;
+    font-size: 1.1em;
+    font-family: monospace;
+    letter-spacing: .25em;
+    border-radius: 1em;
+}
+.key-container {
+    background-color: transparent;
+    border: 1px solid #aaaaaa;
+}
+.key-container-normal {
+    background-color: #efefef;
+}
 
-.key-container > .keyElement {
+.key-container > .keyElement,
+.key-container-normal > .keyElement {
     height: 1.7em;
     line-height: 1.7em;
     font-size: 1.1em;
@@ -167,11 +178,28 @@ ul > li:nth-child(n+2) {
     width: 13px;
     position: absolute;
     float: left;
+}
+
+.key-container-assoc > .keyElement {
+    height: 25px;
     background-color: transparent;
+    width: 7px;
+    margin-left: 6px;
+    position: absolute;
+    float: left;
+    border-left: 1px solid #ccc;
+}
+
+.key-container > .keyElement {
     cursor: pointer;
     transition: left .5s ease-in;
 }
-.keyElement.highlighted {
+.key-container-normal > .keyElement {
+    cursor: auto;
+    user-select: none;
+}
+
+.key-container > .keyElement.highlighted {
     color: #f07;
     font-weight: bold;
 }
