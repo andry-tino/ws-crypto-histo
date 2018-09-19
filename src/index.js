@@ -100,16 +100,7 @@ function attachNativeEvents() {
     // Encrypt/Decrypt button
     var decryptButton = document.getElementById("buttonDecrypt");
     decryptButton.addEventListener("click", function (e) {
-        var inputBox = document.getElementById("textInput");
-        var key = extractKey();
-
-        showTextInOutputBox(
-            checkKeyAndDecrypt(key,
-                function () {
-                    return decryptCypherText(inputBox.textContent, key);
-                }
-            )
-        );
+        decryptPlainAndShowCypher();
     });
 
     // Reset button
@@ -155,6 +146,19 @@ function attachNativeEvents() {
             keyInput.textContent = generateDual(initial);
         }
     });
+}
+
+function decryptPlainAndShowCypher() {
+    var inputBox = document.getElementById("textInput");
+    var key = extractKey();
+
+    showTextInOutputBox(
+        checkKeyAndDecrypt(key,
+            function () {
+                return decryptCypherText(inputBox.textContent, key);
+            }
+        )
+    );
 }
 
 function getKeyLen() {
