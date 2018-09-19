@@ -79,6 +79,7 @@ function durstenfeldShuffle(array) {
     return array;
 }
 
+// TODO: Refactor
 function generateDual(key) {
     var tpl = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

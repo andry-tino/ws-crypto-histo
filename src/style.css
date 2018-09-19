@@ -295,3 +295,7 @@ ul > li:nth-child(n+2) {
 #buttonDecrypt {
     margin-right: 1em;
 }
+
+#buttonDual {
+    display: none;
+}

@@ -137,15 +137,15 @@ function attachNativeEvents() {
     });
 
     // Dual button
-    var dualButton = document.getElementById("buttonDual");
-    dualButton.addEventListener("click", function (e) {
-        var keyInput = document.getElementsByClassName("keyInput")[0];
+    // var dualButton = document.getElementById("buttonDual");
+    // dualButton.addEventListener("click", function (e) {
+    //     var keyInput = document.getElementsByClassName("keyInput")[0];
 
-        var initial = keyInput.textContent;
-        if (initial && initial.length > 0) {
-            keyInput.textContent = generateDual(initial);
-        }
-    });
+    //     var initial = keyInput.textContent;
+    //     if (initial && initial.length > 0) {
+    //         keyInput.textContent = generateDual(initial);
+    //     }
+    // });
 }
 
 function decryptPlainAndShowCypher() {
