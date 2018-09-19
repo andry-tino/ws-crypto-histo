@@ -9,9 +9,6 @@ window.addEventListener("load", function () {
     loadDataInChart("histoText", data_lang_nil, "Text frequencies");
     loadDataInChart("histoLang", data_lang_en, "English language");
 
-    // Initialize width for key input
-    var keyInput = document.getElementsByClassName("keyInput")[0];
-
     showFlag("lang_en");
 });
 
