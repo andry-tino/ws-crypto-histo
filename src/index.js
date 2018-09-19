@@ -33,7 +33,7 @@ function attachNativeEvents() {
     var refreshPeriod = 3000; // In milliseconds
     var t = -1;
 
-    var updateOnInput = function(e) {
+    var updateOnInput = function (e) {
         var textBox = document.getElementById("textInput");
         textBox.style.backgroundColor = "#cccccc";
 
@@ -56,7 +56,7 @@ function attachNativeEvents() {
     textInput.addEventListener("paste", function (e) {
         // This is necessary to wait for the text to be 
         // rendered in the element and to be available here
-        window.setTimeout(function() {
+        window.setTimeout(function () {
             var pastedText = textInput.innerText;
             textInput.innerText = stripFormatting(pastedText);
 
@@ -69,9 +69,9 @@ function attachNativeEvents() {
     // Key container (swapping animation)
     var keyContainer = document.getElementsByClassName("key-container")[0];
     var firstToSwap = null;
-    keyContainer.addEventListener("click", function(e) {
+    keyContainer.addEventListener("click", function (e) {
         var target = e.target;
-        
+
         if (!firstToSwap) {
             // First selection made
             firstToSwap = target;
@@ -87,7 +87,7 @@ function attachNativeEvents() {
             attr1.value = secondPos;
             var attr2 = document.createAttribute("data-pos");
             attr2.value = firstToSwap.attributes.getNamedItem("data-pos").value;
-    
+
             firstToSwap.attributes.setNamedItem(attr1);
             target.attributes.setNamedItem(attr2);
         }
@@ -100,21 +100,13 @@ function attachNativeEvents() {
     // Encrypt/Decrypt button
     var decryptButton = document.getElementById("buttonDecrypt");
     decryptButton.addEventListener("click", function (e) {
-        if (getKeyLength() != 26) {
-            showTextInOutputBox(`Error, key must be 26 characters! You provided a key with ${getKeyLength()} characters.`);
-            return;
-        }
-
         var inputBox = document.getElementById("textInput");
-        var keyInput = document.getElementsByClassName("keyInput")[0];
-
-        // Clean key just to be sure
-        keyInput.textContent = cleanKey(keyInput);
+        var key = extractKey();
 
         showTextInOutputBox(
-            checkKeyAndDecrypt(keyInput.textContent, 
-                function () { 
-                    return decryptCypherText(inputBox.textContent, keyInput.textContent); 
+            checkKeyAndDecrypt(key,
+                function () {
+                    return decryptCypherText(inputBox.textContent, key);
                 }
             )
         );
@@ -123,15 +115,34 @@ function attachNativeEvents() {
     // Reset button
     var resetButton = document.getElementById("buttonReset");
     resetButton.addEventListener("click", function (e) {
-        var keyInput = document.getElementsByClassName("keyInput")[0];
-        keyInput.textContent = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var keyContainer = document.getElementsByClassName("key-container")[0];
+        var keys = keyContainer.children;
+
+        for (let i = 0, l = getKeyLen(); i < l; i++) {
+            var key = keys[i];
+
+            var attr = document.createAttribute("data-pos");
+            attr.value = `${i + 1}`;
+
+            key.attributes.setNamedItem(attr);
+        }
     });
 
     // Random button
     var rndButton = document.getElementById("buttonRnd");
     rndButton.addEventListener("click", function (e) {
-        var keyInput = document.getElementsByClassName("keyInput")[0];
-        keyInput.textContent = durstenfeldShuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")).join("");
+        var keyContainer = document.getElementsByClassName("key-container")[0];
+        var keys = keyContainer.children;
+        var newPosArray = durstenfeldShuffle("1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26".split(","));
+
+        for (let i = 0, l = getKeyLen(); i < l; i++) {
+            var key = keys[i];
+
+            var attr = document.createAttribute("data-pos");
+            attr.value = newPosArray[i];
+
+            key.attributes.setNamedItem(attr);
+        }
     });
 
     // Dual button
@@ -248,7 +259,7 @@ function letter2color(letter) {
 
 function showFlag(code) {
     var flags = document.getElementsByClassName("lang-flag");
-    
+
     for (let i = 0; i < flags.length; i++) {
         flags[i].style.display = flags[i].id == code ? "block" : "none";
     }
@@ -256,10 +267,6 @@ function showFlag(code) {
 
 function showTextInOutputBox(text) {
     var box = document.getElementById("textOutput");
-    
-    box.textContent = text;
-}
 
-function getKeyLength(text) {
-    return document.getElementsByClassName("keyInput")[0].textContent.length;
+    box.textContent = text;
 }
