@@ -142,7 +142,7 @@ You must call this function to create the _frequency object_ to push into the _f
 
 ```javascript
 
-var frequency = "10";
+var frequency = 10;
 var letter = "a";
 // Letter a appears 10 times in text
 var frequencyObj = buildHistoFreqInfo(letter, frequency);
