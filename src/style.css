@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     font-family: serif;
     min-width: 1000px;
-    min-height: 700px;
+    min-height: 750px;
 }
 
 html, body {
@@ -122,9 +122,20 @@ body > *:not(.title):not(.divider) {
     flex: 1 1 auto;
 }
 .pane > div:nth-child(2),
-.pane > div:nth-child(3) {
+.pane > div:nth-child(3),
+.pane > div:nth-child(4) {
     flex: 0 0 auto;
     width: 350px;
+    height: 250px;
+}
+.pane > div:nth-child(2) {
+    width: 300px;
+}
+
+#codeInput {
+    width: 290px;
+    height: 250px;
+    margin-left: 10px;
 }
 
 ul {

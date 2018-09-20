@@ -5,6 +5,9 @@
     <title>CryptoHisto</title>
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.png" />
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../libs/codemirror.css">
+    <script type="application/javascript" src="../libs/codemirror.js"></script>
+    <script type="application/javascript" src="../libs/mode-javascript.js"></script>
     <script type="application/javascript" src="../libs/d3.v4.min.js"></script>
     <script type="application/javascript" src="../libs/d3-scale-chromatic.v1.min.js"></script>
     <script type="application/javascript" src="./data.js"></script>
@@ -24,6 +27,9 @@
         <div class="pane">
             <div>
                 <div id="textInput" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
+            </div>
+            <div>
+                <div id="codeInput"></div>
             </div>
             <div>
                 <svg id="histoText" width="350" height="250"></svg>

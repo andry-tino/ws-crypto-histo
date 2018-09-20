@@ -10,6 +10,8 @@ window.addEventListener("load", function () {
     loadDataInChart("histoLang", data_lang_en, "English language");
 
     showFlag("lang_en");
+
+    initializeCodeEditor();
 });
 
 function attachNativeEvents() {
@@ -273,4 +275,15 @@ function showTextInOutputBox(text) {
     var box = document.getElementById("textOutput");
 
     box.textContent = text;
+}
+
+function initializeCodeEditor() {
+    var cm = CodeMirror(document.getElementById("codeInput"), {
+        value: "function () {\n}",
+        mode: "javascript",
+        lineNumbers: true,
+        dragDrop: false
+    });
+
+    cm.setSize(290, 250);
 }
