@@ -308,6 +308,6 @@
             tabSize: 2
         });
 
-        cm.setSize(290, 250);
+        cm.setSize(600, 400);
     }
 })()

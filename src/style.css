@@ -12,6 +12,43 @@ html, body {
     height: 100%;
 }
 
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: #000;
+    opacity: 0.3;
+    z-index: 10;
+}
+
+.top-content {
+    position: absolute;
+    width: 600px;
+    height: 430px;
+    z-index: 11;
+    left: calc(50vw - 300px);
+    top: calc(50vh - 200px);
+    display: flex;
+    flex-direction: column;
+}
+
+#codeInput {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    overflow: auto;
+}
+
+.code-input-commands {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    height: 25px;
+    margin-top: 5px;
+}
+
 .title, .desc1, .pane, .desc2 {
     flex: 0 0 auto;
 }
@@ -124,20 +161,10 @@ body > *:not(.title):not(.divider) {
     flex: 1 1 auto;
 }
 .pane > div:nth-child(2),
-.pane > div:nth-child(3),
-.pane > div:nth-child(4) {
+.pane > div:nth-child(3) {
     flex: 0 0 auto;
     width: 350px;
     height: 250px;
-}
-.pane > div:nth-child(2) {
-    width: 300px;
-}
-
-#codeInput {
-    width: 290px;
-    height: 250px;
-    margin-left: 10px;
 }
 
 ul {

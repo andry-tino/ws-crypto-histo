@@ -18,6 +18,17 @@
 </head>
 
 <body>
+    <div class="top-content">
+        <div id="codeInput"></div>
+        <div class="code-input-commands">
+            <ul class="buttons-container">
+                <li><input id="buttonSave" type="button" value="Save"></li>
+                <li><input id="buttonTest" type="button" value="Test"></li>
+            <ul>
+        </div>
+    </div>
+    <div id="overlay"></div>
+
     <div class="title">
         <div>CryptoHisto</div>
         <div>v0.5.0</div>
@@ -27,9 +38,6 @@
         <div class="pane">
             <div>
                 <div id="textInput" contenteditable="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
-            </div>
-            <div>
-                <div id="codeInput"></div>
             </div>
             <div>
                 <svg id="histoText" width="350" height="250"></svg>
@@ -66,6 +74,7 @@
                 </li>
                 <li>Analyze the histograms and confront the peaks in order to find the original letter association.</li>
             </ul>
+            
             <ul class="desc2">
                 <li><span class="emph">Encript or decrypt</span> In order to encrypt or decrypt the message you need to use a key. 
                     If you decrypt, you must calculate the key as a result of the analysis performed by using the histograms, 
