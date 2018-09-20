@@ -60,6 +60,11 @@ function logInfo() {
     if (window["__cryptohisto_log_enabled"]) console.log(arguments);
 }
 
+function logErr() {
+    // Log only if env variable is defined
+    if (window["__cryptohisto_log_enabled"]) console.error(arguments);
+}
+
 function cleanKey(key) {
     // Removes spaces and newlines + to uppercase, + trim to 26 chars
     return key.textContent.replace(/\n|\r|\s/g, "").toUpperCase().substr(0, 26);

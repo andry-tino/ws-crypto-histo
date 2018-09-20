@@ -4,8 +4,8 @@ body {
     display: flex;
     flex-direction: column;
     font-family: serif;
-    min-width: 1000px;
-    min-height: 750px;
+    min-width: 800px;
+    min-height: 600px;
 }
 
 html, body {
@@ -20,6 +20,7 @@ html, body {
     display: flex;
     flex-direction: row;
     margin-top: .75em;
+    flex: 0 0 auto;
 }
 
 .desc1, .desc2 {
@@ -109,6 +110,7 @@ body > *:not(.title):not(.divider) {
     width: 30%;
     min-width: 400px;
     flex: 0 0 auto;
+    overflow: auto;
 }
 
 .buttons-container {
@@ -318,6 +320,7 @@ ul > li:nth-child(n+2) {
     border-radius: .65em;
     flex: 1 1 auto;
     margin-bottom: .75em;
+    margin-left: 10px; /* Cater for scrollbars in left pane */
 }
 
 .divider {
