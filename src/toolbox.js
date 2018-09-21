@@ -23,7 +23,7 @@ function buildHistoFreqInfo(letter, frequency) {
 
 function findAllOccurrances(substring, string) {
     var a = []; var i = -1;
-    while((i = string.indexOf(substring, i+1)) >= 0) a.push(i);
+    while ((i = string.indexOf(substring, i + 1)) >= 0) a.push(i);
 
     return a;
 }
@@ -60,6 +60,54 @@ function logInfo() {
     if (window["__cryptohisto_log_enabled"]) console.log(arguments);
 }
 
+function logErr() {
+    // Log only if env variable is defined
+    if (window["__cryptohisto_log_enabled"]) console.error(arguments);
+}
+
+function testCodedFunction(f) {
+    var basicCheck = function (r) {
+        return !!r && r.length === 26;
+    }
+
+    if (!f) {
+        return false;
+    }
+
+    try {
+        // Basic input
+        var res1 = f("abcd");
+        if (!basicCheck(res1)) {
+            return false;
+        }
+        if (res1[0].letter !== "A" || res1[0].frequency !== 0.25) {
+            return false;
+        }
+        if (res1[1].letter !== "B" || res1[1].frequency !== 0.25) {
+            return false;
+        }
+        if (res1[2].letter !== "C" || res1[2].frequency !== 0.25) {
+            return false;
+        }
+        if (res1[3].letter !== "D" || res1[3].frequency !== 0.25) {
+            return false;
+        }
+
+        // Uppercase/lowercase
+        var res2 = f("AAaa");
+        if (!basicCheck(res2)) {
+            return false;
+        }
+        if (res2[0].letter !== "A" || res2[0].frequency !== 1) {
+            return false;
+        }
+    } catch (ex) {
+        return false;
+    }
+
+    return true;
+}
+
 function cleanKey(key) {
     // Removes spaces and newlines + to uppercase, + trim to 26 chars
     return key.textContent.replace(/\n|\r|\s/g, "").toUpperCase().substr(0, 26);
@@ -79,6 +127,15 @@ function durstenfeldShuffle(array) {
     return array;
 }
 
+function hideElement(el) {
+    el.classList.add("hidden");
+}
+
+function showElement(el) {
+    el.classList.remove("hidden");
+}
+
+// TODO: Refactor
 function generateDual(key) {
     var tpl = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
