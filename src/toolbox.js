@@ -23,7 +23,7 @@ function buildHistoFreqInfo(letter, frequency) {
 
 function findAllOccurrances(substring, string) {
     var a = []; var i = -1;
-    while((i = string.indexOf(substring, i+1)) >= 0) a.push(i);
+    while ((i = string.indexOf(substring, i + 1)) >= 0) a.push(i);
 
     return a;
 }
@@ -66,13 +66,42 @@ function logErr() {
 }
 
 function testCodedFunction(f) {
+    var basicCheck = function (r) {
+        return !!r && r.length === 26;
+    }
+
     if (!f) {
         return false;
     }
 
-    // Basic input
-    var res1 = f("abc");
-    if (!res1 || res1.length !== 26) {
+    try {
+        // Basic input
+        var res1 = f("abcd");
+        if (!basicCheck(res1)) {
+            return false;
+        }
+        if (res1[0].letter !== "A" || res1[0].frequency !== 0.25) {
+            return false;
+        }
+        if (res1[1].letter !== "B" || res1[1].frequency !== 0.25) {
+            return false;
+        }
+        if (res1[2].letter !== "C" || res1[2].frequency !== 0.25) {
+            return false;
+        }
+        if (res1[3].letter !== "D" || res1[3].frequency !== 0.25) {
+            return false;
+        }
+
+        // Uppercase/lowercase
+        var res2 = f("AAaa");
+        if (!basicCheck(res2)) {
+            return false;
+        }
+        if (res2[0].letter !== "A" || res2[0].frequency !== 1) {
+            return false;
+        }
+    } catch (ex) {
         return false;
     }
 

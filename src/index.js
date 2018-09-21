@@ -364,7 +364,12 @@
     }
 
     function initializeCodeEditor() {
-        var savedValue = window.localStorage.getItem("cryptohisto.fun");
+        try {
+            var savedValue = window.localStorage.getItem("cryptohisto.fun");
+        } catch (ex) {
+            savedValue = null;
+        }
+        
         var initialValue = savedValue || "function getFrequencies(text) {\n\t// You code here\n\t// Variable 'text' contains the plain text\n}";
 
         cm = CodeMirror(document.getElementById("codeInput"), {
@@ -375,7 +380,8 @@
             tabSize: 2
         });
 
-        var overlay = document.getElementById("overlay")
+        var overlay = document.getElementById("overlay");
+        var failedLocalStorage = false;
         cm.on("change", function (e) {
             // Reset overlay color in case it was modify after calling the test function
             if (overlay.style.backgroundColor !== "#000") {
@@ -383,7 +389,12 @@
             }
 
             // Always memorize the function
-            window.localStorage.setItem("cryptohisto.fun", cm.getValue());
+            if (failedLocalStorage) return;
+            try {
+                window.localStorage.setItem("cryptohisto.fun", cm.getValue());
+            } catch (ex) {
+                failedLocalStorage = true;
+            }
         });
 
         cm.setSize(600, 400);
