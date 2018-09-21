@@ -45,9 +45,11 @@
             if (t > 0) window.clearTimeout(t);
 
             t = window.setTimeout(function () {
-                var resultFromCodedFunction = runCodedFunction();
+                var resultFromCodedFunction = window["__cryptohisto_use_txtstats"] 
+                    ? calculateTextStats(textBox.textContent) 
+                    : runCodedFunction();
 
-                loadDataInChart("histoText", calculateTextStats(textBox.textContent), "Text frequencies");
+                loadDataInChart("histoText", resultFromCodedFunction, "Text frequencies");
                 textBox.style.backgroundColor = ""; // Take from stylesheet
                 t = -1;
 
@@ -310,21 +312,25 @@
         }
 
         logInfo("successfully evaluated coded function", res);
+        return res;
     }
 
     function showHideCodingTools(show) {
         var overlay = document.getElementById("overlay");
         var topContent = document.getElementsByClassName("top-content")[0];
+        var buttons = document.getElementsByClassName("code-input-commands")[0];
 
         if (show) {
             showElement(overlay);
             showElement(topContent);
+            showElement(buttons);
             showElement(cm.getWrapperElement());
             return;
         }
 
         hideElement(overlay);
         hideElement(topContent);
+        hideElement(buttons);
         hideElement(cm.getWrapperElement());
     }
 
