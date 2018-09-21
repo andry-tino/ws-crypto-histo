@@ -107,7 +107,7 @@ console.log(count);
 The output is:
 
 ```
-e
+3
 ```
 
 ### Important
