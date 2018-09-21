@@ -65,6 +65,20 @@ function logErr() {
     if (window["__cryptohisto_log_enabled"]) console.error(arguments);
 }
 
+function testCodedFunction(f) {
+    if (!f) {
+        return false;
+    }
+
+    // Basic input
+    var res1 = f("abc");
+    if (!res1 || res1.length !== 26) {
+        return false;
+    }
+
+    return true;
+}
+
 function cleanKey(key) {
     // Removes spaces and newlines + to uppercase, + trim to 26 chars
     return key.textContent.replace(/\n|\r|\s/g, "").toUpperCase().substr(0, 26);

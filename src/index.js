@@ -45,11 +45,16 @@
             if (t > 0) window.clearTimeout(t);
 
             t = window.setTimeout(function () {
-                var resultFromCodedFunction = window["__cryptohisto_use_txtstats"] 
+                var results = window["__cryptohisto_use_txtstats"] 
                     ? calculateTextStats(textBox.textContent) 
                     : runCodedFunction();
 
-                loadDataInChart("histoText", resultFromCodedFunction, "Text frequencies");
+                try {
+                    loadDataInChart("histoText", results, "Text frequencies");
+                } catch (ex) {
+                    logErr("Error loading data in histogram", ex);
+                    loadDataInChart("histoText", null, "Text frequencies (error)");
+                }
                 textBox.style.backgroundColor = ""; // Take from stylesheet
                 t = -1;
 
@@ -151,6 +156,17 @@
             showHideCodingTools(true);
         });
 
+        // Test function button
+        var testFunctionButton = document.getElementById("buttonTestFun");
+        testFunctionButton.addEventListener("click", function (e) {
+            var overlay = document.getElementById("overlay");
+            if (testCodedFunction(getCodedFunction())) {
+                overlay.style.backgroundColor = "#0f0";
+            } else {
+                overlay.style.backgroundColor = "#f00";
+            }
+        });
+
         // Overlay
         var overlay = document.getElementById("overlay");
         overlay.addEventListener("click", function (e) {
@@ -207,7 +223,7 @@
         if (svgElement) cleanElement(svgElement);
 
         if (!data) {
-            loadDataInChart("histoText", data_lang_nil, "Text frequencies");
+            loadDataInChart("histoText", data_lang_nil, title);
             return;
         }
 
@@ -297,6 +313,18 @@
         box.textContent = text;
     }
 
+    function getCodedFunction() {
+        var src = cm.getValue();
+        
+        try {
+            var f = eval(`(${src})`);
+        } catch (e) {
+            return null;
+        }
+
+        return f;
+    }
+
     function runCodedFunction() {
         var src = cm.getValue();
         logInfo("retrieved code from CM", src);
@@ -309,6 +337,7 @@
             var res = eval(extendedSrc);
         } catch (e) {
             logErr("error while evaluating coded function", e);
+            return null;
         }
 
         logInfo("successfully evaluated coded function", res);
@@ -341,6 +370,14 @@
             lineNumbers: true,
             dragDrop: false,
             tabSize: 2
+        });
+
+        var overlay = document.getElementById("overlay")
+        cm.on("change", function (e) {
+            // Reset overlay color in case it was modify after calling the test function
+            if (overlay.style.backgroundColor !== "#000") {
+                document.getElementById("overlay").style.backgroundColor = "#000";
+            }
         });
 
         cm.setSize(600, 400);
