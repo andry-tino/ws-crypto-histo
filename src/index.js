@@ -143,6 +143,18 @@
             }
         });
 
+        // Open dev tools button
+        var codeButton = document.getElementById("buttonCoding");
+        codeButton.addEventListener("click", function (e) {
+            showHideCodingTools(true);
+        });
+
+        // Overlay
+        var overlay = document.getElementById("overlay");
+        overlay.addEventListener("click", function (e) {
+            showHideCodingTools(false);
+        });
+
         // Dual button
         // var dualButton = document.getElementById("buttonDual");
         // dualButton.addEventListener("click", function (e) {
@@ -177,7 +189,8 @@
         var keys = keyContainer.children;
 
         var str = new Array(getKeyLen());
-        for (var key of keys) {
+        for (let i = 0; i < keys.length; i++) {
+            let key = keys[i];
             var value = key.attributes.getNamedItem("data-value").value;
             var pos = parseInt(key.attributes.getNamedItem("data-pos").value);
 
@@ -299,6 +312,22 @@
         logInfo("successfully evaluated coded function", res);
     }
 
+    function showHideCodingTools(show) {
+        var overlay = document.getElementById("overlay");
+        var topContent = document.getElementsByClassName("top-content")[0];
+
+        if (show) {
+            showElement(overlay);
+            showElement(topContent);
+            showElement(cm.getWrapperElement());
+            return;
+        }
+
+        hideElement(overlay);
+        hideElement(topContent);
+        hideElement(cm.getWrapperElement());
+    }
+
     function initializeCodeEditor() {
         cm = CodeMirror(document.getElementById("codeInput"), {
             value: "function getFrequencies(text) {\n\t// You code here\n\t// Variable 'text' contains the plain text\n}",
@@ -309,5 +338,6 @@
         });
 
         cm.setSize(600, 400);
+        hideElement(cm.getWrapperElement());
     }
 })()

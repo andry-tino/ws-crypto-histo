@@ -12,6 +12,10 @@ html, body {
     height: 100%;
 }
 
+.hidden {
+    display: none;
+}
+
 #overlay {
     position: absolute;
     top: 0;
@@ -22,6 +26,7 @@ html, body {
     background-color: #000;
     opacity: 0.3;
     z-index: 10;
+    cursor: pointer;
 }
 
 .top-content {
@@ -362,6 +367,10 @@ ul > li:nth-child(n+2) {
 }
 
 #buttonDecrypt {
+    margin-right: 1em;
+}
+
+#buttonRnd {
     margin-right: 1em;
 }
 

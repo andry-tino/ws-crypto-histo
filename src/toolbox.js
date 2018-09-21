@@ -84,6 +84,14 @@ function durstenfeldShuffle(array) {
     return array;
 }
 
+function hideElement(el) {
+    el.classList.add("hidden");
+}
+
+function showElement(el) {
+    el.classList.remove("hidden");
+}
+
 // TODO: Refactor
 function generateDual(key) {
     var tpl = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
