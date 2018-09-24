@@ -9,7 +9,7 @@ function calculateTextStats(text) {
     console.log("calculateTextStats", "calculating stats for text length:", text.length);
 
     // Convert the text to upper case
-    var uppercaseText = text.toUpperCase();
+    var uppercaseText = convertToUpperCase(text);
     // Remove white spaces
     var noWhiteSpaceText = removeWhiteSpaces(uppercaseText);
     // Remove newline characters
@@ -18,8 +18,8 @@ function calculateTextStats(text) {
     var finalText = noLineBreaksText;
     console.log("calculateTextStats", "final text computed:", finalText);
 
-    var total = finalText.length;
-    var letters = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
+    var total = calculateTextLength(finalText);
+    var letters = createArrayOfLetters();
 
     // This will contain, for each letter, the histogram letter frequency info objects
     var freqs = [];

@@ -126,6 +126,18 @@ function testCodedFunction(f) {
     return true;
 }
 
+function calculateTextLength(text) {
+    return text.length;
+}
+
+function convertToUpperCase(text) {
+    return text.toUpperCase();
+}
+
+function createArrayOfLetters() {
+    return "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
+}
+
 function cleanKey(key) {
     // Removes spaces and newlines + to uppercase, + trim to 26 chars
     return key.textContent.replace(/\n|\r|\s/g, "").toUpperCase().substr(0, 26);
