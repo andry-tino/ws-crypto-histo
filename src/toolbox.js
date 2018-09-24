@@ -101,6 +101,24 @@ function testCodedFunction(f) {
         if (res2[0].letter !== "A" || res2[0].frequency !== 1) {
             return false;
         }
+
+        // Complete set of chars
+        var res3 = f("AA,aa@.;'+=%&*$#");
+        if (!basicCheck(res3)) {
+            return false;
+        }
+        if (res3[0].letter !== "A" || res3[0].frequency !== 0.25) {
+            return false;
+        }
+
+        // Spaces ignored
+        var res4 = f("AA   aa");
+        if (!basicCheck(res4)) {
+            return false;
+        }
+        if (res4[0].letter !== "A" || res4[0].frequency !== 1) {
+            return false;
+        }
     } catch (ex) {
         return false;
     }
